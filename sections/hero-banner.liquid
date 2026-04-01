@@ -1,99 +1,103 @@
-<section class="relative min-h-[85vh] flex items-center overflow-hidden bg-forest-900">
+<div class="hero-carousel relative" id="hero-carousel">
 
-  <!-- Background overlays -->
-  <div class="absolute inset-0 bg-gradient-to-br from-forest-900 via-forest-800/90 to-forest-700/70 z-10"></div>
-  <div class="absolute inset-0 hero-pattern z-10"></div>
-  <div class="absolute inset-0 bg-gradient-to-r from-forest-900/60 via-transparent to-transparent z-10"></div>
-
-  <!-- Background image -->
-  <div class="absolute inset-0 z-0">
-    {%- if section.settings.bg_image != blank -%}
-      <img src="{{ section.settings.bg_image | image_url: width: 1600 }}" alt="" class="w-full h-full object-cover">
-    {%- else -%}
-      <img src="{{ 'hero-bg.jpeg' | asset_url }}" alt="A&A International Supermarkt" class="w-full h-full object-cover">
-    {%- endif -%}
-  </div>
-
-  <!-- Floating decorative elements -->
-  <div class="absolute top-20 right-16 w-64 h-64 bg-saffron-500/10 rounded-full blur-3xl z-10 pointer-events-none"></div>
-  <div class="absolute bottom-20 right-32 w-48 h-48 bg-forest-500/20 rounded-full blur-2xl z-10 pointer-events-none"></div>
-  <div class="absolute top-1/3 left-1/4 w-32 h-32 bg-saffron-400/8 rounded-full blur-2xl z-10 pointer-events-none"></div>
-
-  <!-- Content -->
-  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-    <div class="max-w-2xl">
-
-      <!-- Eyebrow badge -->
-      <div class="hero-fade-1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
-        <span class="w-1.5 h-1.5 bg-saffron-400 rounded-full animate-pulse"></span>
-        <span class="text-white/90 text-xs font-medium tracking-wider uppercase">
-          {{ section.settings.badge | default: "Frankfurt's International Market" }}
-        </span>
-      </div>
-
-      <!-- Headline -->
-      <h1 class="hero-fade-2 font-display font-bold text-white leading-[1.1] mb-6">
-        <span class="block text-4xl sm:text-5xl lg:text-6xl">
-          {{ section.settings.headline_line1 | default: "Taste the World," }}
-        </span>
-        <span class="block text-4xl sm:text-5xl lg:text-6xl">
-          {{ section.settings.headline_line2 | default: "Shop" }}
-          <span class="text-saffron-400 italic"> {{ section.settings.headline_accent | default: "from Home" }}</span>
-        </span>
-      </h1>
-
-      <!-- Subtext -->
-      <p class="hero-fade-3 text-forest-200 text-lg sm:text-xl leading-relaxed mb-8 max-w-lg">
-        {{ section.settings.subtext | default: "Over 200 authentic products from Afghanistan, Turkey, India, the Middle East and beyond. Fresh. Quality. Delivered." }}
-      </p>
-
-      <!-- CTA Buttons -->
-      <div class="hero-fade-4 flex flex-wrap items-center gap-3 mb-12">
-        <a href="{{ section.settings.cta_primary_url | default: '/collections/all' }}"
-           class="inline-flex items-center gap-2 px-6 py-3.5 bg-saffron-500 hover:bg-saffron-600 text-white font-semibold rounded-2xl text-sm shadow-lg shadow-saffron-900/30 transition-all hover:-translate-y-0.5 active:translate-y-0">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-          </svg>
-          {{ section.settings.cta_primary | default: "Shop Now" }}
-        </a>
-        <a href="{{ section.settings.cta_secondary_url | default: '/collections/new-arrivals' }}"
-           class="inline-flex items-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-2xl text-sm border border-white/20 transition-all hover:-translate-y-0.5">
-          {{ section.settings.cta_secondary | default: "New Arrivals" }}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- Stats -->
-      <div class="hero-fade-5 flex flex-wrap gap-6 sm:gap-8">
-        <div>
-          <p class="text-2xl font-bold text-white">{{ section.settings.stat1_value | default: "200+" }}</p>
-          <p class="text-xs text-forest-300 mt-0.5">{{ section.settings.stat1_label | default: "Products" }}</p>
-        </div>
-        <div class="w-px bg-white/20"></div>
-        <div>
-          <p class="text-2xl font-bold text-white">{{ section.settings.stat2_value | default: "50,000+" }}</p>
-          <p class="text-xs text-forest-300 mt-0.5">{{ section.settings.stat2_label | default: "Happy Customers" }}</p>
-        </div>
-        <div class="w-px bg-white/20"></div>
-        <div>
-          <p class="text-2xl font-bold text-white">{{ section.settings.stat3_value | default: "4.9 ★" }}</p>
-          <p class="text-xs text-forest-300 mt-0.5">{{ section.settings.stat3_label | default: "Rating" }}</p>
+  <!-- ── Slide 1: Full-bleed with text overlay ── -->
+  <div class="hero-slide active" data-index="0">
+    <section class="relative overflow-hidden" style="height:clamp(280px,45vw,520px)">
+      <!-- Background image -->
+      <img src="{{ 'hero-banner-1.png' | asset_url }}" alt="A&A International Supermarkt" class="absolute inset-0 w-full h-full object-cover object-center">
+      <!-- Gradient veil for text legibility -->
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+      <!-- Text content -->
+      <div class="absolute inset-0 flex items-center">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full">
+          <div class="max-w-xl">
+            <div class="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold rounded-full px-3 py-1 mb-4">
+              🛒 Welcome to A&A
+            </div>
+            <h1 class="font-display font-bold text-white leading-[1.1] tracking-tight mb-3" style="font-size:clamp(1.6rem,4vw,3.2rem)">
+              Authentic Indian &amp;<br>International Groceries
+            </h1>
+            <p class="text-white/85 mb-5" style="font-size:clamp(0.85rem,1.5vw,1rem)">Over 2,000 products from India &amp; the world — delivered across Germany</p>
+            <div class="flex flex-wrap items-center gap-3">
+              <a href="{{ section.settings.cta_primary_url | default: routes.all_products_collection_url }}"
+                 class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold px-6 py-3 rounded-full transition-all shadow-lg">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                Shop Now
+              </a>
+              <span class="text-xs font-bold text-white bg-amber-500 px-3 py-1.5 rounded-full shadow">Free delivery over €50</span>
+            </div>
+          </div>
         </div>
       </div>
-
-    </div>
+    </section>
   </div>
 
-  <!-- Wave divider -->
-  <div class="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
-    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full">
-      <path d="M0 40 C240 80 480 0 720 40 C960 80 1200 0 1440 40 L1440 80 L0 80 Z" fill="#FAF8F4"/>
-    </svg>
+  <!-- ── Slide 2: Pure image, no text ── -->
+  <div class="hero-slide" data-index="1" style="display:none">
+    <section class="relative overflow-hidden" style="height:clamp(280px,45vw,520px)">
+      <img src="{{ 'hero-banner-2.png' | asset_url }}" alt="A&A seasonal collection" class="w-full h-full object-cover object-center">
+    </section>
   </div>
 
-</section>
+  <!-- Prev / Next arrows -->
+  <button class="hero-prev absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white shadow-md flex items-center justify-center z-20 transition-all" aria-label="Previous slide">
+    <svg class="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+  </button>
+  <button class="hero-next absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white shadow-md flex items-center justify-center z-20 transition-all" aria-label="Next slide">
+    <svg class="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+  </button>
+
+  <!-- Dot nav -->
+  <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20">
+    <button class="hero-dot active-dot w-5 h-2 rounded-full bg-amber-400 transition-all" data-index="0" aria-label="Slide 1"></button>
+    <button class="hero-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-index="1" aria-label="Slide 2"></button>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var carousel = document.getElementById('hero-carousel');
+  if (!carousel) return;
+  var slides = carousel.querySelectorAll('.hero-slide');
+  var dots   = carousel.querySelectorAll('.hero-dot');
+  var current = 0;
+  var timer;
+
+  function goTo(i) {
+    slides[current].style.display = 'none';
+    dots[current].classList.remove('active-dot');
+    dots[current].style.width = '0.5rem';
+    dots[current].style.background = 'rgba(255,255,255,0.5)';
+    current = i;
+    slides[current].style.display = '';
+    dots[current].classList.add('active-dot');
+    dots[current].style.width = '1.25rem';
+    dots[current].style.background = '#fbbf24';
+  }
+
+  function next() { goTo((current + 1) % slides.length); }
+  function prev() { goTo((current - 1 + slides.length) % slides.length); }
+
+  carousel.querySelector('.hero-next').addEventListener('click', function() { clearInterval(timer); next(); timer = setInterval(next, 6000); });
+  carousel.querySelector('.hero-prev').addEventListener('click', function() { clearInterval(timer); prev(); timer = setInterval(next, 6000); });
+  dots.forEach(function(d) {
+    d.addEventListener('click', function() { clearInterval(timer); goTo(parseInt(d.dataset.index)); timer = setInterval(next, 6000); });
+  });
+
+  timer = setInterval(next, 6000);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    { "type": "url", "id": "cta_primary_url", "label": "Shop Now button link" }
+  ],
+  "presets": [{ "name": "Hero Banner" }]
+}
+{% endschema %}
 
 {% schema %}
 {

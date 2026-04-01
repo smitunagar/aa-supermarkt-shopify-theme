@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0F3F25">
+  <meta name="theme-color" content="#7E3D18">
 
   <title>
     {%- if page_title == blank -%}{{ shop.name }}{%- else -%}{{ page_title }} | {{ shop.name }}{%- endif -%}
@@ -30,25 +30,26 @@
       theme: {
         extend: {
           colors: {
+            // Brand palette derived from hero banner imagery
             forest: {
-              50: '#EDF4EF', 100: '#D3E8DA', 200: '#A8D1B5', 300: '#72B58D',
-              400: '#3D9666', 500: '#1B6B43', 600: '#155534', 700: '#0F3F25',
-              800: '#0A2A18', 900: '#05160D', 950: '#021008',
+              50: '#FDF5ED', 100: '#F8E8D0', 200: '#F0CBA4', 300: '#E5A870',
+              400: '#D48449', 500: '#BC6426', 600: '#9E5020', 700: '#7E3D18',
+              800: '#5F2D12', 900: '#3F1E0C', 950: '#200F06',
             },
             saffron: {
-              50: '#FEF6EE', 100: '#FDE9D4', 200: '#FAD0A4', 300: '#F7B26E',
-              400: '#F29040', 500: '#E07C39', 600: '#C4622A', 700: '#9E4A1E',
-              800: '#7A3516', 900: '#58240E',
+              50: '#FEFBF0', 100: '#FDF3CE', 200: '#FAE39C', 300: '#F5CD60',
+              400: '#EDAF28', 500: '#D9920E', 600: '#BC7610', 700: '#965C0E',
+              800: '#72440B', 900: '#512F08',
             },
             spice: {
-              50: '#FAF3F0', 100: '#F5E5DE', 200: '#EABCAD', 300: '#DB8F7B',
-              400: '#CB6451', 500: '#B5422C', 600: '#943221', 700: '#6F2418',
-              800: '#4C180F', 900: '#2A0D08',
+              50: '#FBF2EE', 100: '#F5E1D8', 200: '#EAB5A4', 300: '#DC8568',
+              400: '#CC5D43', 500: '#B54030', 600: '#953222', 700: '#70241A',
+              800: '#4C1812', 900: '#2B0E0A',
             },
             warm: {
-              50: '#FAF8F4', 100: '#F5F0E8', 200: '#EDE5D6', 300: '#E2D8C8',
-              400: '#D4C9B4', 500: '#C4B89D', 600: '#AFA085', 700: '#8E7F65',
-              800: '#6B5F4A', 900: '#4A4133',
+              50: '#FDFAF4', 100: '#F7EEE1', 200: '#EDD9C4', 300: '#E1C2A4',
+              400: '#D2A882', 500: '#C28D60', 600: '#AB7247', 700: '#8A5634',
+              800: '#673F24', 900: '#452919',
             },
           },
           fontFamily: {
