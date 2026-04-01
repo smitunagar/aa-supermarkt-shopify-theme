@@ -27,17 +27,9 @@
       <!-- Logo -->
       <a href="{{ routes.root_url }}" class="flex items-center gap-2 flex-shrink-0">
         {%- if section.settings.logo != blank -%}
-          <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" class="h-10 w-auto">
+          <img src="{{ section.settings.logo | image_url: width: 240 }}" alt="{{ shop.name }}" class="h-11 w-auto object-contain">
         {%- else -%}
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-forest-700 rounded-lg flex items-center justify-center">
-              <span class="text-white font-bold text-sm">A</span>
-            </div>
-            <div>
-              <p class="font-display font-bold text-forest-900 text-base leading-none">A&amp;A</p>
-              <p class="text-[9px] text-stone-400 uppercase tracking-widest leading-none mt-0.5">International Supermarkt</p>
-            </div>
-          </div>
+          <img src="{{ 'logo.jpeg' | asset_url }}" alt="{{ shop.name }}" class="h-11 w-auto object-contain">
         {%- endif -%}
       </a>
 

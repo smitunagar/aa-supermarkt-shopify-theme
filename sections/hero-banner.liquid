@@ -5,12 +5,14 @@
   <div class="absolute inset-0 hero-pattern z-10"></div>
   <div class="absolute inset-0 bg-gradient-to-r from-forest-900/60 via-transparent to-transparent z-10"></div>
 
-  <!-- Background image if set -->
-  {%- if section.settings.bg_image != blank -%}
-    <div class="absolute inset-0 z-0">
+  <!-- Background image -->
+  <div class="absolute inset-0 z-0">
+    {%- if section.settings.bg_image != blank -%}
       <img src="{{ section.settings.bg_image | image_url: width: 1600 }}" alt="" class="w-full h-full object-cover">
-    </div>
-  {%- endif -%}
+    {%- else -%}
+      <img src="{{ 'hero-bg.jpeg' | asset_url }}" alt="A&A International Supermarkt" class="w-full h-full object-cover">
+    {%- endif -%}
+  </div>
 
   <!-- Floating decorative elements -->
   <div class="absolute top-20 right-16 w-64 h-64 bg-saffron-500/10 rounded-full blur-3xl z-10 pointer-events-none"></div>

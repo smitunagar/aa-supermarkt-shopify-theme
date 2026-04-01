@@ -6,14 +6,8 @@
 
       <!-- Brand column -->
       <div class="lg:col-span-1">
-        <div class="flex items-center gap-2 mb-5">
-          <div class="w-9 h-9 bg-saffron-500 rounded-xl flex items-center justify-center flex-shrink-0">
-            <span class="text-white font-bold text-base">A</span>
-          </div>
-          <div>
-            <p class="font-display font-bold text-white text-lg leading-none">A&amp;A</p>
-            <p class="text-[10px] text-forest-300 uppercase tracking-widest mt-0.5">International Supermarkt</p>
-          </div>
+        <div class="mb-5">
+          <img src="{{ 'logo.jpeg' | asset_url }}" alt="{{ shop.name }}" class="h-12 w-auto object-contain brightness-0 invert">
         </div>
         <p class="text-forest-300 text-sm leading-relaxed mb-5">
           {{ section.settings.tagline | default: "Your premium destination for authentic international groceries in Frankfurt am Main. From Afghan sauces to Turkish pantry staples." }}
