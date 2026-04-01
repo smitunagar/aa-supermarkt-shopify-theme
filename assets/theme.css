@@ -5,16 +5,16 @@
 
 /* --- CSS Custom Properties --- */
 :root {
-  --forest-50:  #FDF5ED;
-  --forest-100: #F8E8D0;
-  --forest-500: #BC6426;
-  --forest-700: #7E3D18;
-  --forest-900: #3F1E0C;
-  --saffron-400: #EDAF28;
-  --saffron-500: #D9920E;
-  --warm-50:  #FDFAF4;
-  --warm-100: #F7EEE1;
-  --warm-200: #EDD9C4;
+  --forest-50:  #f0fdf4;
+  --forest-100: #dcfce7;
+  --forest-500: #22c55e;
+  --forest-700: #15803d;
+  --forest-900: #14532d;
+  --saffron-400: #fbbf24;
+  --saffron-500: #f59e0b;
+  --warm-50:  #fafaf9;
+  --warm-100: #f5f5f4;
+  --warm-200: #e7e5e4;
   --radius-card: 1rem;
   --shadow-card: 0 2px 12px 0 rgba(0,0,0,0.06), 0 1px 3px 0 rgba(0,0,0,0.04);
   --shadow-hover: 0 8px 30px 0 rgba(0,0,0,0.10), 0 2px 8px 0 rgba(0,0,0,0.06);
@@ -38,7 +38,7 @@ a { text-decoration: none; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--warm-100); }
 ::-webkit-scrollbar-thumb { background: var(--warm-200); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--forest-500); }
+::-webkit-scrollbar-thumb:hover { background: var(--forest-700); }
 
 /* --- Marquee Animation --- */
 @keyframes marquee {
