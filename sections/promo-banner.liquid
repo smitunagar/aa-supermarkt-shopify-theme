@@ -1,0 +1,68 @@
+{%- assign deal_cats = "🌶️ Spices|/collections/spices-masalas,🍚 Rice & Grains|/collections/rice-grains,🥫 Pantry Staples|/collections/canned-goods,🍬 Snacks & Sweets|/collections/snacks-sweets,☕ Tea & Coffee|/collections/tea-coffee,🧃 Beverages|/collections/beverages,🥬 Fresh Produce|/collections/fresh-produce,🧈 Dairy|/collections/dairy-refrigerated" | split: "," -%}
+
+<section class="bg-forest-900 relative overflow-hidden">
+
+  <!-- Subtle grid pattern overlay -->
+  <div class="absolute inset-0 pointer-events-none opacity-[0.05]"
+       style="background-image:repeating-linear-gradient(135deg,#fff 0px,#fff 1px,transparent 1px,transparent 14px);background-size:20px 20px;"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Main promo row -->
+    <div class="flex flex-wrap items-center justify-between gap-3 py-4 border-b border-white/10">
+
+      <div class="flex items-center gap-3 sm:gap-4">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-spice-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+          <span class="text-lg sm:text-2xl">🔥</span>
+        </div>
+        <div>
+          <div class="flex flex-wrap items-center gap-2 mb-0.5">
+            <span class="bg-spice-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+              This Week
+            </span>
+            <h2 class="text-white font-bold text-base sm:text-xl leading-tight">
+              {{ section.settings.headline | default: "Up to 30% Off — Deals You'll Love" }}
+            </h2>
+          </div>
+          <p class="text-forest-300 text-xs sm:text-sm">
+            {{ section.settings.subtext | default: "Fresh spices · Pantry essentials · International snacks & sweets" }}
+          </p>
+        </div>
+      </div>
+
+      <a href="{{ section.settings.cta_url | default: '/collections/on-sale' }}"
+         class="flex items-center gap-2 bg-saffron-500 hover:bg-saffron-400 text-white font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-sm transition-all hover:shadow-lg flex-shrink-0 whitespace-nowrap">
+        {{ section.settings.cta_label | default: "Shop All Deals" }}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Quick-access category pills row -->
+    <div class="flex items-center gap-2 py-3 overflow-x-auto scrollbar-hide">
+      <span class="text-forest-400 text-xs font-medium whitespace-nowrap flex-shrink-0 pr-1">On offer:</span>
+      {%- for item in deal_cats -%}
+        {%- assign parts = item | split: "|" -%}
+        <a href="{{ parts[1] }}"
+           class="flex-shrink-0 px-3 py-1.5 bg-white/10 hover:bg-saffron-500/80 text-white/90 hover:text-white text-xs font-medium rounded-full transition-colors whitespace-nowrap border border-white/10 hover:border-saffron-400/50">
+          {{ parts[0] }}
+        </a>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Promo Banner",
+  "settings": [
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Up to 30% Off — Deals You'll Love" },
+    { "type": "text", "id": "subtext",  "label": "Subtext",  "default": "Fresh spices · Pantry essentials · International snacks & sweets" },
+    { "type": "text", "id": "cta_label","label": "Button text", "default": "Shop All Deals" },
+    { "type": "url",  "id": "cta_url",  "label": "Button link" }
+  ],
+  "presets": [{ "name": "Promo Banner" }]
+}
+{% endschema %}

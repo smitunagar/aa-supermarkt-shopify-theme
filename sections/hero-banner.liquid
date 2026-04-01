@@ -1,31 +1,33 @@
-<div class="hero-carousel relative" id="hero-carousel">
+<div class="hero-carousel relative overflow-hidden" id="hero-carousel" style="height:clamp(280px,45vw,540px)">
 
-  <!-- Slide 1: Pure image -->
+  <!-- Slide 1 -->
   <div class="hero-slide active" data-index="0">
-    <section class="relative overflow-hidden" style="height:clamp(280px,45vw,520px)">
-      <img src="{{ 'hero-banner-1.png' | asset_url }}" alt="A&A International Supermarkt" class="w-full h-full object-cover object-center">
-    </section>
+    <img src="{{ 'hero-banner-1.png' | asset_url }}" alt="A&A International Supermarkt" class="w-full h-full object-cover object-center">
   </div>
 
-  <!-- Slide 2: Pure image -->
-  <div class="hero-slide" data-index="1" style="display:none">
-    <section class="relative overflow-hidden" style="height:clamp(280px,45vw,520px)">
-      <img src="{{ 'hero-banner-2.png' | asset_url }}" alt="A&A seasonal collection" class="w-full h-full object-cover object-center">
-    </section>
+  <!-- Slide 2 -->
+  <div class="hero-slide" data-index="1">
+    <img src="{{ 'hero-banner-2.png' | asset_url }}" alt="A&A seasonal collection" class="w-full h-full object-cover object-center">
   </div>
 
-  <!-- Prev / Next arrows -->
-  <button class="hero-prev absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white shadow-md flex items-center justify-center z-20 transition-all" aria-label="Previous slide">
-    <svg class="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+  <!-- Prev arrow -->
+  <button class="hero-prev absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/25 hover:bg-black/45 backdrop-blur-sm flex items-center justify-center z-20 transition-all" aria-label="Previous slide">
+    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+    </svg>
   </button>
-  <button class="hero-next absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white shadow-md flex items-center justify-center z-20 transition-all" aria-label="Next slide">
-    <svg class="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+
+  <!-- Next arrow -->
+  <button class="hero-next absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/25 hover:bg-black/45 backdrop-blur-sm flex items-center justify-center z-20 transition-all" aria-label="Next slide">
+    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+    </svg>
   </button>
 
   <!-- Dot nav -->
-  <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20">
-    <button class="hero-dot active-dot w-5 h-2 rounded-full bg-white transition-all" data-index="0" aria-label="Slide 1"></button>
-    <button class="hero-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all" data-index="1" aria-label="Slide 2"></button>
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
+    <button class="hero-dot active-dot" data-index="0" aria-label="Slide 1"></button>
+    <button class="hero-dot" data-index="1" aria-label="Slide 2"></button>
   </div>
 
 </div>
@@ -34,19 +36,17 @@
 (function() {
   var carousel = document.getElementById('hero-carousel');
   if (!carousel) return;
-  var slides = carousel.querySelectorAll('.hero-slide');
-  var dots   = carousel.querySelectorAll('.hero-dot');
+  var slides  = carousel.querySelectorAll('.hero-slide');
+  var dots    = carousel.querySelectorAll('.hero-dot');
   var current = 0;
   var timer;
 
   function goTo(i) {
-    slides[current].style.display = 'none';
-    dots[current].style.width = '0.5rem';
-    dots[current].style.background = 'rgba(255,255,255,0.5)';
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active-dot');
     current = i;
-    slides[current].style.display = '';
-    dots[current].style.width = '1.25rem';
-    dots[current].style.background = 'rgba(255,255,255,1)';
+    slides[current].classList.add('active');
+    dots[current].classList.add('active-dot');
   }
 
   function next() { goTo((current + 1) % slides.length); }
@@ -54,13 +54,26 @@
 
   carousel.querySelector('.hero-next').addEventListener('click', function() { clearInterval(timer); next(); timer = setInterval(next, 6000); });
   carousel.querySelector('.hero-prev').addEventListener('click', function() { clearInterval(timer); prev(); timer = setInterval(next, 6000); });
+
   dots.forEach(function(d) {
-    d.addEventListener('click', function() { clearInterval(timer); goTo(parseInt(d.dataset.index)); timer = setInterval(next, 6000); });
+    d.addEventListener('click', function() {
+      clearInterval(timer);
+      goTo(parseInt(d.dataset.index));
+      timer = setInterval(next, 6000);
+    });
   });
 
   timer = setInterval(next, 6000);
 })();
 </script>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [],
+  "presets": [{ "name": "Hero Banner" }]
+}
+{% endschema %}
 
 {% schema %}
 {

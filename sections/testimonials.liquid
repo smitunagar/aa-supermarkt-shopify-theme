@@ -1,0 +1,115 @@
+<section class="py-14 bg-forest-50 border-t border-forest-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Heading -->
+    <div class="text-center mb-10 fade-up">
+      <p class="text-xs font-semibold uppercase tracking-widest text-saffron-600 mb-2">Real Reviews</p>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl text-forest-900">What Our Shoppers Say</h2>
+      <div class="flex items-center justify-center gap-1.5 mt-3">
+        <span class="text-saffron-400 text-lg tracking-tight">★★★★★</span>
+        <span class="text-stone-500 text-sm">4.9 / 5 from 200+ verified buyers</span>
+      </div>
+    </div>
+
+    <!-- Review cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+
+      <!-- Review 1 -->
+      <div class="bg-white rounded-2xl p-6 shadow-card fade-up relative overflow-hidden">
+        <span class="absolute top-4 right-5 text-forest-100 text-5xl font-serif leading-none select-none">"</span>
+        <div class="flex text-saffron-400 text-base mb-4 relative z-10">★★★★★</div>
+        <p class="text-stone-600 text-sm leading-relaxed mb-5 relative z-10">
+          "{{ section.settings.review1_text | default: "The spice selection is incredible — I found everything I needed for authentic Afghan cooking. Quality is top-notch and delivery was super fast!" }}"
+        </p>
+        <div class="flex items-center gap-3 pt-4 border-t border-warm-100">
+          <div class="w-10 h-10 rounded-full bg-forest-100 flex items-center justify-center text-sm font-bold text-forest-700 flex-shrink-0">
+            {{ section.settings.review1_name | default: "Fatima K." | slice: 0 }}
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-stone-800">{{ section.settings.review1_name | default: "Fatima K." }}</p>
+            <p class="text-xs text-stone-400">{{ section.settings.review1_location | default: "Frankfurt · Verified buyer" }}</p>
+          </div>
+          <span class="ml-auto text-[10px] font-semibold text-forest-600 bg-forest-50 px-2 py-0.5 rounded-full border border-forest-100">✓ Verified</span>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="bg-white rounded-2xl p-6 shadow-card fade-up relative overflow-hidden" style="transition-delay:0.1s">
+        <span class="absolute top-4 right-5 text-forest-100 text-5xl font-serif leading-none select-none">"</span>
+        <div class="flex text-saffron-400 text-base mb-4 relative z-10">★★★★★</div>
+        <p class="text-stone-600 text-sm leading-relaxed mb-5 relative z-10">
+          "{{ section.settings.review2_text | default: "Best Turkish and Middle Eastern grocery store in Frankfurt! The halal meat section and imported products are exactly what I was looking for." }}"
+        </p>
+        <div class="flex items-center gap-3 pt-4 border-t border-warm-100">
+          <div class="w-10 h-10 rounded-full bg-saffron-100 flex items-center justify-center text-sm font-bold text-saffron-700 flex-shrink-0">
+            {{ section.settings.review2_name | default: "Mehmet Y." | slice: 0 }}
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-stone-800">{{ section.settings.review2_name | default: "Mehmet Y." }}</p>
+            <p class="text-xs text-stone-400">{{ section.settings.review2_location | default: "Frankfurt · Verified buyer" }}</p>
+          </div>
+          <span class="ml-auto text-[10px] font-semibold text-forest-600 bg-forest-50 px-2 py-0.5 rounded-full border border-forest-100">✓ Verified</span>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="bg-white rounded-2xl p-6 shadow-card fade-up relative overflow-hidden" style="transition-delay:0.2s">
+        <span class="absolute top-4 right-5 text-forest-100 text-5xl font-serif leading-none select-none">"</span>
+        <div class="flex text-saffron-400 text-base mb-4 relative z-10">★★★★★</div>
+        <p class="text-stone-600 text-sm leading-relaxed mb-5 relative z-10">
+          "{{ section.settings.review3_text | default: "Amazing variety of Indian and Pakistani products. Fair prices and they stock hard-to-find ingredients like ajwain and hing. My weekly go-to!" }}"
+        </p>
+        <div class="flex items-center gap-3 pt-4 border-t border-warm-100">
+          <div class="w-10 h-10 rounded-full bg-spice-100 flex items-center justify-center text-sm font-bold text-spice-600 flex-shrink-0">
+            {{ section.settings.review3_name | default: "Priya S." | slice: 0 }}
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-stone-800">{{ section.settings.review3_name | default: "Priya S." }}</p>
+            <p class="text-xs text-stone-400">{{ section.settings.review3_location | default: "Sachsenhausen · Verified buyer" }}</p>
+          </div>
+          <span class="ml-auto text-[10px] font-semibold text-forest-600 bg-forest-50 px-2 py-0.5 rounded-full border border-forest-100">✓ Verified</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats bar -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-10 border-t border-forest-100">
+      <div class="text-center fade-up">
+        <p class="font-display font-bold text-3xl sm:text-4xl text-forest-700">200+</p>
+        <p class="text-xs text-stone-500 mt-1.5 font-medium">Authentic Products</p>
+      </div>
+      <div class="text-center fade-up" style="transition-delay:0.1s">
+        <p class="font-display font-bold text-3xl sm:text-4xl text-forest-700">25+</p>
+        <p class="text-xs text-stone-500 mt-1.5 font-medium">Countries of Origin</p>
+      </div>
+      <div class="text-center fade-up" style="transition-delay:0.2s">
+        <p class="font-display font-bold text-3xl sm:text-4xl text-forest-700">5,000+</p>
+        <p class="text-xs text-stone-500 mt-1.5 font-medium">Happy Customers</p>
+      </div>
+      <div class="text-center fade-up" style="transition-delay:0.3s">
+        <p class="font-display font-bold text-3xl sm:text-4xl text-forest-700">4.9★</p>
+        <p class="text-xs text-stone-500 mt-1.5 font-medium">Average Rating</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    { "type": "textarea", "id": "review1_text",     "label": "Review 1 text" },
+    { "type": "text",     "id": "review1_name",     "label": "Review 1 name",     "default": "Fatima K." },
+    { "type": "text",     "id": "review1_location", "label": "Review 1 location", "default": "Frankfurt · Verified buyer" },
+    { "type": "textarea", "id": "review2_text",     "label": "Review 2 text" },
+    { "type": "text",     "id": "review2_name",     "label": "Review 2 name",     "default": "Mehmet Y." },
+    { "type": "text",     "id": "review2_location", "label": "Review 2 location", "default": "Frankfurt · Verified buyer" },
+    { "type": "textarea", "id": "review3_text",     "label": "Review 3 text" },
+    { "type": "text",     "id": "review3_name",     "label": "Review 3 name",     "default": "Priya S." },
+    { "type": "text",     "id": "review3_location", "label": "Review 3 location", "default": "Sachsenhausen · Verified buyer" }
+  ],
+  "presets": [{ "name": "Testimonials" }]
+}
+{% endschema %}

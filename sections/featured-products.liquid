@@ -1,4 +1,4 @@
-<section class="py-16 bg-white">
+<section class="py-16 {%- if section.settings.section_bg == 'tinted' -%} bg-forest-50{%- else -%} bg-white{%- endif -%}">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- Section header -->
@@ -60,7 +60,13 @@
       "label": "Collection to feature"
     },
     { "type": "range", "id": "products_count", "min": 4, "max": 20, "step": 1, "default": 10, "label": "Number of products" },
-    { "type": "url", "id": "view_all_url", "label": "View all link" }
+    { "type": "url",    "id": "view_all_url", "label": "View all link" },
+    { "type": "select", "id": "section_bg",  "label": "Background",
+      "options": [
+        { "value": "white",  "label": "White" },
+        { "value": "tinted", "label": "Light green tint" }
+      ],
+      "default": "white" }
   ],
   "presets": [{ "name": "Featured Products" }]
 }

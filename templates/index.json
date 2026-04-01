@@ -15,18 +15,40 @@
         "max_collections": 8
       }
     },
+    "promo": {
+      "type": "promo-banner",
+      "settings": {}
+    },
     "products": {
       "type": "featured-products",
       "settings": {
         "heading": "Best Sellers",
         "eyebrow": "Customer Favourites",
-        "products_count": 10
+        "products_count": 10,
+        "section_bg": "white"
       }
+    },
+    "new-products": {
+      "type": "featured-products",
+      "settings": {
+        "heading": "New Arrivals",
+        "eyebrow": "Just Landed",
+        "products_count": 8,
+        "section_bg": "tinted"
+      }
+    },
+    "cuisine": {
+      "type": "cuisine-strip",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {}
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {}
     }
   },
-  "order": ["hero", "trust", "categories", "products", "newsletter"]
+  "order": ["hero", "trust", "categories", "promo", "products", "new-products", "cuisine", "testimonials", "newsletter"]
 }
