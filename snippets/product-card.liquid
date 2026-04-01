@@ -1,0 +1,108 @@
+{%- comment -%}
+  Renders a single product card.
+  Usage: {% render 'product-card', product: product %}
+{%- endcomment -%}
+
+{%- liquid
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+  assign sold_out = false
+  unless product.available
+    assign sold_out = true
+  endunless
+-%}
+
+<div class="product-card fade-up" data-product-card>
+
+  <!-- Image area -->
+  <div class="card-image-wrap aspect-[4/3]">
+    {%- if product.featured_image -%}
+      <a href="{{ product.url }}">
+        <img src="{{ product.featured_image | image_url: width: 400 }}"
+             alt="{{ product.featured_image.alt | escape | default: product.title }}"
+             loading="lazy"
+             width="400"
+             height="300">
+      </a>
+    {%- else -%}
+      <a href="{{ product.url }}" class="flex items-center justify-center w-full h-full bg-warm-100 text-5xl">
+        🛍️
+      </a>
+    {%- endif -%}
+
+    <!-- Badge -->
+    {%- if sold_out -%}
+      <span class="product-badge bg-stone-200 text-stone-600">Sold Out</span>
+    {%- elsif on_sale -%}
+      <span class="product-badge bg-spice-500 text-white">
+        Sale
+      </span>
+    {%- elsif product.tags contains 'new' or product.tags contains 'New' -%}
+      <span class="product-badge bg-forest-600 text-white">New</span>
+    {%- elsif product.tags contains 'bestseller' or product.tags contains 'Bestseller' -%}
+      <span class="product-badge bg-saffron-500 text-white">⭐ Best Seller</span>
+    {%- elsif product.tags contains 'organic' or product.tags contains 'Organic' -%}
+      <span class="product-badge bg-forest-500 text-white">🌿 Organic</span>
+    {%- endif -%}
+
+    <!-- Wishlist btn -->
+    <button class="wishlist-btn"
+            data-wishlist-btn
+            data-product-id="{{ product.id }}"
+            aria-label="Add to wishlist">
+      <svg class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Info area -->
+  <div class="p-3">
+
+    <!-- Collection/category tag -->
+    {%- if product.collections.first -%}
+      <p class="text-[10px] font-medium uppercase tracking-widest text-stone-400 mb-1">
+        {{ product.collections.first.title }}
+      </p>
+    {%- endif -%}
+
+    <!-- Title -->
+    <a href="{{ product.url }}" class="block mb-2">
+      <h3 class="font-semibold text-stone-800 text-sm leading-snug line-clamp-2 hover:text-forest-700 transition-colors">
+        {{ product.title }}
+      </h3>
+    </a>
+
+    <!-- Price row -->
+    <div class="flex items-center gap-2 mb-3">
+      <span class="font-bold text-forest-700 text-base">{{ product.price | money }}</span>
+      {%- if on_sale -%}
+        <span class="text-xs text-stone-400 line-through">{{ product.compare_at_price | money }}</span>
+        {%- assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+        <span class="text-[10px] font-bold text-spice-600 bg-spice-50 px-1.5 py-0.5 rounded-full">-{{ discount }}%</span>
+      {%- endif -%}
+    </div>
+
+    <!-- Add to cart / qty stepper -->
+    {%- if sold_out -%}
+      <button disabled class="add-btn opacity-50 cursor-not-allowed">Sold Out</button>
+    {%- else -%}
+      <div class="flex items-center gap-2">
+        <div class="qty-stepper hidden" data-qty-stepper>
+          <button class="qty-btn" data-qty-minus aria-label="Decrease quantity">−</button>
+          <span class="text-sm font-semibold w-6 text-center" data-qty-value>1</span>
+          <button class="qty-btn" data-qty-plus aria-label="Increase quantity">+</button>
+        </div>
+        <button class="add-btn"
+                data-add-to-cart
+                data-variant-id="{{ product.variants.first.id }}"
+                aria-label="Add {{ product.title }} to cart">
+          Add to Cart
+        </button>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>

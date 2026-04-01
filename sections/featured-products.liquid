@@ -1,0 +1,67 @@
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="flex items-end justify-between mb-10 fade-up">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-saffron-600 mb-2">
+          {{ section.settings.eyebrow | default: "Customer Favourites" }}
+        </p>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-forest-900">
+          {{ section.settings.heading | default: "Best Sellers" }}
+        </h2>
+      </div>
+      <a href="{{ section.settings.view_all_url | default: '/collections/all' }}"
+         class="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-forest-700 hover:text-forest-900 transition-colors">
+        View all
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Products grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5">
+      {%- assign featured = collections[section.settings.collection] -%}
+      {%- if featured != blank -%}
+        {%- for product in featured.products limit: section.settings.products_count -%}
+          {%- render 'product-card', product: product -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for product in collections.all.products limit: section.settings.products_count -%}
+          {%- render 'product-card', product: product -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    <!-- Mobile view-all -->
+    <div class="mt-10 text-center">
+      <a href="{{ section.settings.view_all_url | default: '/collections/all' }}"
+         class="inline-flex items-center gap-2 px-6 py-3 bg-forest-50 hover:bg-forest-100 text-forest-700 font-semibold text-sm rounded-2xl transition-colors border border-forest-200">
+        View all products
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "Customer Favourites" },
+    { "type": "text", "id": "heading", "label": "Section heading", "default": "Best Sellers" },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection to feature"
+    },
+    { "type": "range", "id": "products_count", "min": 4, "max": 20, "step": 1, "default": 10, "label": "Number of products" },
+    { "type": "url", "id": "view_all_url", "label": "View all link" }
+  ],
+  "presets": [{ "name": "Featured Products" }]
+}
+{% endschema %}

@@ -1,0 +1,84 @@
+<section class="py-10 bg-forest-50 border-y border-forest-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+
+      <!-- Free Delivery -->
+      <div class="trust-item fade-up text-center">
+        <div class="trust-icon-ring mx-auto mb-3">
+          <svg class="w-6 h-6 text-forest-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-forest-900 text-sm mb-1">
+          {{ section.settings.trust1_title | default: "Free Delivery" }}
+        </h3>
+        <p class="text-xs text-stone-500 leading-snug">
+          {{ section.settings.trust1_text | default: "On orders over €50" }}
+        </p>
+      </div>
+
+      <!-- Authentic Quality -->
+      <div class="trust-item fade-up text-center" style="transition-delay:0.1s">
+        <div class="trust-icon-ring mx-auto mb-3">
+          <svg class="w-6 h-6 text-forest-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-forest-900 text-sm mb-1">
+          {{ section.settings.trust2_title | default: "Authentic Quality" }}
+        </h3>
+        <p class="text-xs text-stone-500 leading-snug">
+          {{ section.settings.trust2_text | default: "Sourced direct from producers" }}
+        </p>
+      </div>
+
+      <!-- Easy Returns -->
+      <div class="trust-item fade-up text-center" style="transition-delay:0.2s">
+        <div class="trust-icon-ring mx-auto mb-3">
+          <svg class="w-6 h-6 text-forest-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-forest-900 text-sm mb-1">
+          {{ section.settings.trust3_title | default: "Easy Returns" }}
+        </h3>
+        <p class="text-xs text-stone-500 leading-snug">
+          {{ section.settings.trust3_text | default: "14-day hassle-free returns" }}
+        </p>
+      </div>
+
+      <!-- Secure Payment -->
+      <div class="trust-item fade-up text-center" style="transition-delay:0.3s">
+        <div class="trust-icon-ring mx-auto mb-3">
+          <svg class="w-6 h-6 text-forest-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold text-forest-900 text-sm mb-1">
+          {{ section.settings.trust4_title | default: "Secure Payment" }}
+        </h3>
+        <p class="text-xs text-stone-500 leading-snug">
+          {{ section.settings.trust4_text | default: "SSL encrypted checkout" }}
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "settings": [
+    { "type": "text", "id": "trust1_title", "label": "Trust 1 title", "default": "Free Delivery" },
+    { "type": "text", "id": "trust1_text", "label": "Trust 1 text", "default": "On orders over €50" },
+    { "type": "text", "id": "trust2_title", "label": "Trust 2 title", "default": "Authentic Quality" },
+    { "type": "text", "id": "trust2_text", "label": "Trust 2 text", "default": "Sourced direct from producers" },
+    { "type": "text", "id": "trust3_title", "label": "Trust 3 title", "default": "Easy Returns" },
+    { "type": "text", "id": "trust3_text", "label": "Trust 3 text", "default": "14-day hassle-free returns" },
+    { "type": "text", "id": "trust4_title", "label": "Trust 4 title", "default": "Secure Payment" },
+    { "type": "text", "id": "trust4_text", "label": "Trust 4 text", "default": "SSL encrypted checkout" }
+  ],
+  "presets": [{ "name": "Trust Bar" }]
+}
+{% endschema %}

@@ -1,0 +1,178 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-2 text-xs text-stone-400 mb-8">
+    <a href="/" class="hover:text-forest-700 transition-colors">Home</a>
+    <span>/</span>
+    {%- if product.collections.first -%}
+      <a href="{{ product.collections.first.url }}" class="hover:text-forest-700 transition-colors">
+        {{ product.collections.first.title }}
+      </a>
+      <span>/</span>
+    {%- endif -%}
+    <span class="text-stone-600">{{ product.title | truncate: 40 }}</span>
+  </nav>
+
+  <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
+
+    <!-- Image gallery -->
+    <div>
+      <!-- Main image -->
+      <div class="aspect-square rounded-2xl overflow-hidden bg-warm-100 mb-3">
+        <img id="pdp-main-image"
+             src="{{ current_variant.featured_image | default: product.featured_image | image_url: width: 800 }}"
+             alt="{{ product.featured_image.alt | escape | default: product.title }}"
+             class="w-full h-full object-cover">
+      </div>
+
+      <!-- Thumbnails -->
+      {%- if product.images.size > 1 -%}
+        <div class="flex gap-2 overflow-x-auto pb-1">
+          {%- for image in product.images limit: 6 -%}
+            <div class="pdp-thumbnail flex-shrink-0 w-16 h-16 {{ forloop.first | iif: 'active', '' }}"
+                 data-src="{{ image | image_url: width: 800 }}"
+                 tabindex="0" role="button" aria-label="View image {{ forloop.index }}">
+              <img src="{{ image | image_url: width: 128 }}"
+                   alt="{{ image.alt | escape }}"
+                   class="w-full h-full object-cover"
+                   loading="lazy">
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Product info -->
+    <div>
+
+      <!-- Collection tag -->
+      {%- if product.collections.first -%}
+        <a href="{{ product.collections.first.url }}"
+           class="inline-block text-xs font-semibold uppercase tracking-widest text-saffron-600 hover:text-saffron-700 mb-3">
+          {{ product.collections.first.title }}
+        </a>
+      {%- endif -%}
+
+      <h1 class="font-display font-bold text-2xl sm:text-3xl text-forest-900 mb-4">
+        {{ product.title }}
+      </h1>
+
+      <!-- Rating placeholder -->
+      <div class="flex items-center gap-2 mb-4">
+        <div class="flex text-saffron-400 text-sm">★★★★★</div>
+        <span class="text-xs text-stone-400">({{ product.metafields.reviews.rating_count | default: '24' }} reviews)</span>
+      </div>
+
+      <!-- Price -->
+      <div class="flex items-baseline gap-3 mb-6">
+        <span class="text-3xl font-bold text-forest-700" id="pdp-price">{{ current_variant.price | money }}</span>
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          <span class="text-base text-stone-400 line-through">{{ current_variant.compare_at_price | money }}</span>
+          {%- assign discount = current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price -%}
+          <span class="text-xs font-bold text-white bg-spice-500 px-2 py-0.5 rounded-full">-{{ discount }}%</span>
+        {%- endif -%}
+      </div>
+
+      <!-- Variant selectors -->
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <div class="mb-5" data-variant-group>
+            <p class="text-sm font-semibold text-stone-700 mb-2">{{ option.name }}</p>
+            <div class="flex flex-wrap gap-2">
+              {%- for value in option.values -%}
+                <button class="data-variant-option px-3.5 py-2 text-sm border border-stone-200 rounded-xl hover:border-forest-600 hover:text-forest-700 transition-all
+                               {%- if option.selected_value == value %} border-forest-700 text-forest-700 bg-forest-50 font-semibold selected{%- endif %}">
+                  {{ value }}
+                </button>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      <!-- Quantity + Add to cart -->
+      <div class="flex items-center gap-3 mb-6">
+        <div class="qty-stepper">
+          <button class="qty-btn" data-qty-minus aria-label="Decrease quantity">−</button>
+          <span class="text-base font-semibold w-8 text-center" data-qty-value>1</span>
+          <button class="qty-btn" data-qty-plus aria-label="Increase quantity">+</button>
+        </div>
+        {%- if current_variant.available -%}
+          <button class="add-btn flex-1 py-3.5 text-base flex items-center justify-center gap-2"
+                  data-add-to-cart
+                  data-variant-id="{{ current_variant.id }}"
+                  data-product-card>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            Add to Cart
+          </button>
+        {%- else -%}
+          <button disabled class="add-btn flex-1 py-3.5 text-base opacity-50 cursor-not-allowed">Sold Out</button>
+        {%- endif -%}
+        <button class="wishlist-btn !static !w-11 !h-11 rounded-2xl border border-stone-200"
+                data-wishlist-btn
+                data-product-id="{{ product.id }}"
+                aria-label="Add to wishlist">
+          <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Trust badges row -->
+      <div class="flex flex-wrap gap-3 py-5 border-t border-warm-200 mb-5">
+        <div class="flex items-center gap-1.5 text-xs text-stone-500">
+          <svg class="w-4 h-4 text-forest-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+          </svg>
+          Free delivery over €50
+        </div>
+        <div class="flex items-center gap-1.5 text-xs text-stone-500">
+          <svg class="w-4 h-4 text-forest-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          Quality guaranteed
+        </div>
+        <div class="flex items-center gap-1.5 text-xs text-stone-500">
+          <svg class="w-4 h-4 text-forest-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+          </svg>
+          Easy 14-day returns
+        </div>
+      </div>
+
+      <!-- Description -->
+      {%- if product.description != blank -%}
+        <div class="prose prose-sm text-stone-600 leading-relaxed">
+          {{ product.description }}
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+
+  <!-- Related products -->
+  {%- if product.collections.first.products.size > 1 -%}
+    <div class="mt-16 pt-10 border-t border-warm-200">
+      <h2 class="font-display font-bold text-2xl text-forest-900 mb-8">You May Also Like</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5">
+        {%- for related in product.collections.first.products limit: 5 -%}
+          {%- unless related.id == product.id -%}
+            {%- render 'product-card', product: related -%}
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+</div>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": []
+}
+{% endschema %}

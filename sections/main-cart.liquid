@@ -1,0 +1,141 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <nav class="text-xs text-stone-400 mb-8">
+    <a href="/" class="hover:text-forest-700 transition-colors">Home</a>
+    <span class="mx-2">/</span>
+    <span class="text-stone-600">Your Cart</span>
+  </nav>
+
+  <h1 class="font-display font-bold text-3xl text-forest-900 mb-10">Your Cart</h1>
+
+  {%- if cart.item_count == 0 -%}
+
+    <div class="text-center py-24 max-w-md mx-auto">
+      <p class="text-7xl mb-6">🛒</p>
+      <h2 class="font-semibold text-stone-700 text-xl mb-3">Your cart is empty</h2>
+      <p class="text-stone-400 mb-8">Looks like you haven't added anything yet. Explore our range of authentic international products!</p>
+      <a href="/collections/all"
+         class="inline-flex items-center gap-2 px-6 py-3.5 bg-forest-700 hover:bg-forest-800 text-white font-semibold rounded-2xl transition-colors">
+        Start Shopping
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+  {%- else -%}
+
+    <div class="grid lg:grid-cols-3 gap-10">
+
+      <!-- Cart items -->
+      <div class="lg:col-span-2 space-y-4">
+        {%- form 'cart', cart -%}
+          {%- for item in cart.items -%}
+            <div class="flex gap-4 bg-white rounded-2xl p-4 shadow-card">
+
+              <!-- Image -->
+              <a href="{{ item.url }}" class="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-warm-100">
+                {%- if item.image -%}
+                  <img src="{{ item.image | image_url: width: 160 }}"
+                       alt="{{ item.title | escape }}"
+                       class="w-full h-full object-cover">
+                {%- else -%}
+                  <div class="w-full h-full flex items-center justify-center text-3xl">🛍️</div>
+                {%- endif -%}
+              </a>
+
+              <!-- Info -->
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <a href="{{ item.url }}" class="font-semibold text-stone-800 hover:text-forest-700 transition-colors text-sm sm:text-base">
+                      {{ item.product.title }}
+                    </a>
+                    {%- unless item.product.has_only_default_variant -%}
+                      <p class="text-xs text-stone-400 mt-0.5">{{ item.variant.title }}</p>
+                    {%- endunless -%}
+                  </div>
+                  <p class="font-bold text-forest-700 flex-shrink-0">{{ item.final_line_price | money }}</p>
+                </div>
+
+                <div class="flex items-center justify-between mt-3">
+                  <div class="qty-stepper">
+                    <button type="button" class="qty-btn cart-qty-btn"
+                            data-key="{{ item.key }}" data-qty="{{ item.quantity | minus: 1 }}"
+                            aria-label="Decrease">−</button>
+                    <span class="text-sm font-semibold w-6 text-center">{{ item.quantity }}</span>
+                    <button type="button" class="qty-btn cart-qty-btn"
+                            data-key="{{ item.key }}" data-qty="{{ item.quantity | plus: 1 }}"
+                            aria-label="Increase">+</button>
+                  </div>
+                  <button type="button" class="cart-qty-btn text-xs text-stone-400 hover:text-spice-600 transition-colors"
+                          data-key="{{ item.key }}" data-qty="0">
+                    Remove
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          {%- endfor -%}
+        {%- endform -%}
+      </div>
+
+      <!-- Order summary -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-2xl p-6 shadow-card sticky top-24">
+          <h2 class="font-semibold text-stone-800 text-lg mb-5">Order Summary</h2>
+
+          <div class="space-y-3 mb-5">
+            <div class="flex justify-between text-sm text-stone-500">
+              <span>Subtotal ({{ cart.item_count }} items)</span>
+              <span>{{ cart.total_price | money }}</span>
+            </div>
+            <div class="flex justify-between text-sm text-stone-500">
+              <span>Delivery</span>
+              <span class="text-forest-600 font-medium">
+                {%- if cart.total_price >= 5000 -%}Free{%- else -%}Calculated at checkout{%- endif -%}
+              </span>
+            </div>
+            {%- if cart.total_price < 5000 -%}
+              <div class="bg-forest-50 rounded-xl p-3 text-xs text-forest-700">
+                Add <strong>{{ 5000 | minus: cart.total_price | money }}</strong> more for free delivery 🎉
+              </div>
+            {%- endif -%}
+          </div>
+
+          <div class="flex justify-between items-center py-4 border-t border-warm-200 mb-5">
+            <span class="font-semibold text-stone-800">Total</span>
+            <span class="text-2xl font-bold text-forest-700">{{ cart.total_price | money }}</span>
+          </div>
+
+          <a href="/checkout"
+             class="block w-full py-4 bg-forest-700 hover:bg-forest-800 text-white font-semibold text-center rounded-2xl transition-colors mb-3">
+            Proceed to Checkout
+          </a>
+          <a href="/collections/all"
+             class="block w-full py-3 text-center text-sm text-stone-500 hover:text-forest-700 transition-colors">
+            Continue Shopping
+          </a>
+
+          <!-- Accepted payments -->
+          <div class="mt-5 flex items-center justify-center gap-3 text-stone-300">
+            <span class="text-xs">Secure checkout</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  {%- endif -%}
+
+</div>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,9 @@
+{
+  "current": {
+    "color_primary": "#0F3F25",
+    "color_accent": "#E07C39",
+    "type_header_font": "playfair",
+    "type_base_size": 15,
+    "currency_format": "money_with_currency"
+  }
+}

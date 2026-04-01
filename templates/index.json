@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {}
+    },
+    "trust": {
+      "type": "trust-bar",
+      "settings": {}
+    },
+    "categories": {
+      "type": "featured-categories",
+      "settings": {
+        "heading": "Shop Our Categories",
+        "max_collections": 8
+      }
+    },
+    "products": {
+      "type": "featured-products",
+      "settings": {
+        "heading": "Best Sellers",
+        "eyebrow": "Customer Favourites",
+        "products_count": 10
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "trust", "categories", "products", "newsletter"]
+}

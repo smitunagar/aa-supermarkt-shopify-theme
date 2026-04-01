@@ -1,0 +1,89 @@
+<section class="py-16 bg-warm-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="flex items-end justify-between mb-10 fade-up">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-saffron-600 mb-2">Browse by Category</p>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-forest-900">
+          {{ section.settings.heading | default: "Shop Our Categories" }}
+        </h2>
+      </div>
+      <a href="{{ section.settings.view_all_url | default: '/collections/all' }}"
+         class="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-forest-700 hover:text-forest-900 transition-colors">
+        View all
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Categories grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+      {%- for collection in collections limit: section.settings.max_collections -%}
+        {%- unless collection.handle == 'frontpage' or collection.handle == 'all' -%}
+          <a href="{{ collection.url }}" class="category-card group fade-up">
+            <div class="aspect-[4/3] relative overflow-hidden bg-warm-100">
+              {%- if collection.image -%}
+                <img src="{{ collection.image | image_url: width: 400 }}"
+                     alt="{{ collection.title | escape }}"
+                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                     loading="lazy">
+              {%- else -%}
+                <!-- Placeholder with icon -->
+                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-forest-100 to-forest-200">
+                  <span class="text-4xl">
+                    {%- case collection.handle -%}
+                      {%- when 'fresh-produce' -%}🥬
+                      {%- when 'dairy-eggs' -%}🥛
+                      {%- when 'meat-poultry' -%}🍗
+                      {%- when 'spices-herbs' -%}🌶️
+                      {%- when 'pantry-staples' -%}🫙
+                      {%- when 'beverages' -%}🧃
+                      {%- when 'snacks-sweets' -%}🍬
+                      {%- when 'frozen-foods' -%}❄️
+                      {%- else -%}🛍️
+                    {%- endcase -%}
+                  </span>
+                </div>
+              {%- endif -%}
+              <!-- Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-forest-900/60 via-forest-900/10 to-transparent"></div>
+              <!-- Label -->
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="font-semibold text-white text-sm leading-tight">{{ collection.title }}</p>
+                {%- if collection.products_count > 0 -%}
+                  <p class="text-white/70 text-xs mt-0.5">{{ collection.products_count }} products</p>
+                {%- endif -%}
+              </div>
+            </div>
+          </a>
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Mobile view-all link -->
+    <div class="mt-8 text-center sm:hidden">
+      <a href="{{ section.settings.view_all_url | default: '/collections/all' }}"
+         class="inline-flex items-center gap-1.5 text-sm font-medium text-forest-700 hover:text-forest-900 transition-colors">
+        View all categories
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Categories",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Section heading", "default": "Shop Our Categories" },
+    { "type": "url", "id": "view_all_url", "label": "View all link" },
+    { "type": "range", "id": "max_collections", "min": 4, "max": 12, "step": 1, "default": 8, "label": "Max categories to show" }
+  ],
+  "presets": [{ "name": "Featured Categories" }]
+}
+{% endschema %}

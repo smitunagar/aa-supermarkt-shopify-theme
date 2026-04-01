@@ -1,0 +1,119 @@
+<section class="relative min-h-[85vh] flex items-center overflow-hidden bg-forest-900">
+
+  <!-- Background overlays -->
+  <div class="absolute inset-0 bg-gradient-to-br from-forest-900 via-forest-800/90 to-forest-700/70 z-10"></div>
+  <div class="absolute inset-0 hero-pattern z-10"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-forest-900/60 via-transparent to-transparent z-10"></div>
+
+  <!-- Background image if set -->
+  {%- if section.settings.bg_image != blank -%}
+    <div class="absolute inset-0 z-0">
+      <img src="{{ section.settings.bg_image | image_url: width: 1600 }}" alt="" class="w-full h-full object-cover">
+    </div>
+  {%- endif -%}
+
+  <!-- Floating decorative elements -->
+  <div class="absolute top-20 right-16 w-64 h-64 bg-saffron-500/10 rounded-full blur-3xl z-10 pointer-events-none"></div>
+  <div class="absolute bottom-20 right-32 w-48 h-48 bg-forest-500/20 rounded-full blur-2xl z-10 pointer-events-none"></div>
+  <div class="absolute top-1/3 left-1/4 w-32 h-32 bg-saffron-400/8 rounded-full blur-2xl z-10 pointer-events-none"></div>
+
+  <!-- Content -->
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <div class="max-w-2xl">
+
+      <!-- Eyebrow badge -->
+      <div class="hero-fade-1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+        <span class="w-1.5 h-1.5 bg-saffron-400 rounded-full animate-pulse"></span>
+        <span class="text-white/90 text-xs font-medium tracking-wider uppercase">
+          {{ section.settings.badge | default: "Frankfurt's International Market" }}
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="hero-fade-2 font-display font-bold text-white leading-[1.1] mb-6">
+        <span class="block text-4xl sm:text-5xl lg:text-6xl">
+          {{ section.settings.headline_line1 | default: "Taste the World," }}
+        </span>
+        <span class="block text-4xl sm:text-5xl lg:text-6xl">
+          {{ section.settings.headline_line2 | default: "Shop" }}
+          <span class="text-saffron-400 italic"> {{ section.settings.headline_accent | default: "from Home" }}</span>
+        </span>
+      </h1>
+
+      <!-- Subtext -->
+      <p class="hero-fade-3 text-forest-200 text-lg sm:text-xl leading-relaxed mb-8 max-w-lg">
+        {{ section.settings.subtext | default: "Over 200 authentic products from Afghanistan, Turkey, India, the Middle East and beyond. Fresh. Quality. Delivered." }}
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="hero-fade-4 flex flex-wrap items-center gap-3 mb-12">
+        <a href="{{ section.settings.cta_primary_url | default: '/collections/all' }}"
+           class="inline-flex items-center gap-2 px-6 py-3.5 bg-saffron-500 hover:bg-saffron-600 text-white font-semibold rounded-2xl text-sm shadow-lg shadow-saffron-900/30 transition-all hover:-translate-y-0.5 active:translate-y-0">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          {{ section.settings.cta_primary | default: "Shop Now" }}
+        </a>
+        <a href="{{ section.settings.cta_secondary_url | default: '/collections/new-arrivals' }}"
+           class="inline-flex items-center gap-2 px-6 py-3.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-2xl text-sm border border-white/20 transition-all hover:-translate-y-0.5">
+          {{ section.settings.cta_secondary | default: "New Arrivals" }}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="hero-fade-5 flex flex-wrap gap-6 sm:gap-8">
+        <div>
+          <p class="text-2xl font-bold text-white">{{ section.settings.stat1_value | default: "200+" }}</p>
+          <p class="text-xs text-forest-300 mt-0.5">{{ section.settings.stat1_label | default: "Products" }}</p>
+        </div>
+        <div class="w-px bg-white/20"></div>
+        <div>
+          <p class="text-2xl font-bold text-white">{{ section.settings.stat2_value | default: "50,000+" }}</p>
+          <p class="text-xs text-forest-300 mt-0.5">{{ section.settings.stat2_label | default: "Happy Customers" }}</p>
+        </div>
+        <div class="w-px bg-white/20"></div>
+        <div>
+          <p class="text-2xl font-bold text-white">{{ section.settings.stat3_value | default: "4.9 ★" }}</p>
+          <p class="text-xs text-forest-300 mt-0.5">{{ section.settings.stat3_label | default: "Rating" }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Wave divider -->
+  <div class="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full">
+      <path d="M0 40 C240 80 480 0 720 40 C960 80 1200 0 1440 40 L1440 80 L0 80 Z" fill="#FAF8F4"/>
+    </svg>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+    { "type": "text", "id": "badge", "label": "Badge text", "default": "Frankfurt's International Market" },
+    { "type": "text", "id": "headline_line1", "label": "Headline line 1", "default": "Taste the World," },
+    { "type": "text", "id": "headline_line2", "label": "Headline line 2", "default": "Shop" },
+    { "type": "text", "id": "headline_accent", "label": "Headline accent (italic saffron)", "default": "from Home" },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Over 200 authentic products from Afghanistan, Turkey, India, the Middle East and beyond. Fresh. Quality. Delivered." },
+    { "type": "text", "id": "cta_primary", "label": "Primary button text", "default": "Shop Now" },
+    { "type": "url", "id": "cta_primary_url", "label": "Primary button link" },
+    { "type": "text", "id": "cta_secondary", "label": "Secondary button text", "default": "New Arrivals" },
+    { "type": "url", "id": "cta_secondary_url", "label": "Secondary button link" },
+    { "type": "text", "id": "stat1_value", "label": "Stat 1 value", "default": "200+" },
+    { "type": "text", "id": "stat1_label", "label": "Stat 1 label", "default": "Products" },
+    { "type": "text", "id": "stat2_value", "label": "Stat 2 value", "default": "50,000+" },
+    { "type": "text", "id": "stat2_label", "label": "Stat 2 label", "default": "Happy Customers" },
+    { "type": "text", "id": "stat3_value", "label": "Stat 3 value", "default": "4.9 ★" },
+    { "type": "text", "id": "stat3_label", "label": "Stat 3 label", "default": "Rating" }
+  ],
+  "presets": [{ "name": "Hero Banner" }]
+}
+{% endschema %}
