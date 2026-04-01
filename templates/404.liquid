@@ -1,33 +1,17 @@
-<!DOCTYPE html>
-<html lang="{{ request.locale.iso_code }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Page Not Found | {{ shop.name }}</title>
-  {{ content_for_header }}
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="font-sans bg-warm-50 min-h-screen flex flex-col">
-  {%- section 'header' -%}
-  <main class="flex-1 flex items-center justify-center px-4 py-20">
-    <div class="text-center max-w-md">
-      <p class="text-8xl mb-6">🗺️</p>
-      <h1 class="font-display font-bold text-4xl text-forest-900 mb-4">Page Not Found</h1>
-      <p class="text-stone-500 mb-8 leading-relaxed">
-        Sorry, we couldn't find the page you were looking for. It may have moved or been removed.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/" class="px-6 py-3 bg-forest-700 hover:bg-forest-800 text-white font-semibold rounded-2xl transition-colors">
-          Back to Home
-        </a>
-        <a href="/collections/all" class="px-6 py-3 bg-warm-100 hover:bg-warm-200 text-stone-700 font-semibold rounded-2xl transition-colors">
-          Browse Products
-        </a>
-      </div>
+<main class="flex-1 flex items-center justify-center px-4 py-20 min-h-[60vh]">
+  <div class="text-center max-w-md">
+    <p class="text-8xl mb-6">🗺️</p>
+    <h1 class="font-display font-bold text-4xl text-forest-900 mb-4">Page Not Found</h1>
+    <p class="text-stone-500 mb-8 leading-relaxed">
+      Sorry, we couldn't find the page you were looking for. It may have moved or been removed.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="/" class="px-6 py-3 bg-forest-700 hover:bg-forest-800 text-white font-semibold rounded-2xl transition-colors">
+        Back to Home
+      </a>
+      <a href="/collections/all" class="px-6 py-3 bg-warm-100 hover:bg-warm-200 text-stone-700 font-semibold rounded-2xl transition-colors">
+        Browse Products
+      </a>
     </div>
-  </main>
-  {%- section 'footer' -%}
-  <script src="{{ 'theme.js' | asset_url }}" defer></script>
-</body>
-</html>
+  </div>
+</main>
